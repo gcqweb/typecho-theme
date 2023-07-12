@@ -85,7 +85,7 @@ body {
 * {
     margin: 0;
     padding: 0;
-    border-radius: unset!important;
+/*     border-radius: unset!important; */
 }
 
 body,
