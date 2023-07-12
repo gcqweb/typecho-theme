@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas绘制圆形</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgba(235, 235, 235, 0.897);
+        }
+
+        canvas {
+            background-color: #fff;
+            width: 100%;
+            height: 30%;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        // 设置canvas的宽高
+        var canvas_width = window.innerWidth * 2;
+        var canvas_height = canvas.height * 2;
+        canvas.width = canvas_width;
+        canvas.height = canvas_height;
+
+        // 圆形的最大半径和最小半径
+        var maxRadius = 100;
+        var minRadius = 50;
+
+        // 圆形的颜色数组
+        var colors = ["#2c3e50", "#e74c3c", "#ecf0f1", "#3498db", "#2980b9", "#27ae60", "#f1c40f", "#8e44ad"];
+
+        // 圆形的数组
+        var circles = [];
+
+        // 创建圆形的构造函数
+        function Circle(x, y, dx, dy, radius, color) {
+            this.x = x;
+            this.y = y;
+            this.dx = dx;
+            this.dy = dy;
+            this.radius = radius;
+            this.color = color;
+
+            // 绘制圆形
+            this.draw = function () {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                // ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+
+            // 移动圆形
+            this.move = function () {
+                // 圆形碰到边缘反弹移动
+                if (this.x + this.radius >= canvas_width) {
+                    this.dx = -Math.abs(this.dx);
+                }
+                if (this.x - this.radius <= 0) {
+                    this.dx = Math.abs(this.dx);
+                }
+                if (this.y + this.radius >= canvas_height) {
+                    this.dy = -Math.abs(this.dy);
+                }
+                if (this.y - this.radius <= 0) {
+                    this.dy = Math.abs(this.dy);
+                }
+
+                // 移动圆形
+                this.x += this.dx;
+                this.y += this.dy;
+
+                // 绘制圆形
+                this.draw();
+            }
+        }
+
+        // 创建随机的圆形
+        function createRandomCircle() {
+            // 圆形的位置和速度
+            var x = Math.random() * (canvas_width - maxRadius * 2) + maxRadius;
+            var y = Math.random() * (canvas_height - maxRadius * 2) + maxRadius;
+            var dx = (Math.random() - 0.5) * 6;
+            var dy = (Math.random() - 0.5) * 2;
+
+            // 圆形的半径和颜色
+            var radius = Math.random() * (maxRadius - minRadius) + minRadius;
+            var color = colors[Math.floor(Math.random() * colors.length)];
+
+            // 创建圆形对象
+            var circle = new Circle(x, y, dx, dy, radius, color);
+
+            // 将圆形对象添加到数组中
+            circles.push(circle);
+        }
+
+        // 绘制圆形
+        function drawCircles() {
+            // 清空canvas
+            ctx.clearRect(0, 0, canvas_width, canvas_height);
+
+            // 绘制所有圆形
+            for (var i = 0; i < circles.length; i++) {
+                circles[i].move();
+            }
+        }
+
+        // 创建8个圆形
+        for (var i = 0; i < 8; i++) {
+            createRandomCircle();
+        }
+
+        // 创建定时器，每隔10毫秒绘制所有圆形
+        setInterval(function () {
+            drawCircles();
+        }, 10);
+    </script>
+</body>
+
+</html>

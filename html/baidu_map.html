@@ -1,0 +1,73 @@
+
+<style>
+html, body,
+        #container {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }</style>
+
+
+
+<div id="container" style="height:30%"></div>
+<script type="text/javascript">
+//var map = new BMapGL.Map("container");
+// 创建地图实例 
+//var point = new BMapGL.Point(116.404, 39.915);
+// 创建点坐标 
+//map.centerAndZoom(point, 15);
+// 初始化地图，设置中心点坐标和地图级别 
+
+
+var map = new BMapGL.Map("container");          // 创建地图实例 
+var point = new BMapGL.Point(115.3834300, 33.0911262);  // 创建点坐标 
+map.centerAndZoom(point, 16);                 // 初始化地图，设置中心点坐标和地图级别
+
+map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+map.setHeading(0);   //设置地图旋转角度
+map.setTilt(45);       //设置地图的倾斜角度
+//map.addContextMenu(menu);                           // 给地图添加右键菜单
+map.setDisplayOptions({
+            skyColors: ['rgba(186, 0, 255, 0)','rgba(186, 0, 255, 0)']
+        });
+var txtMenuItem = [
+        {
+            text:'放大',                             // 定义菜单项的显示文本
+            callback: function () {                 // 定义菜单项点击触发的回调函数
+                map.zoomIn();
+            }
+        },
+        {
+            text:'缩小',
+            callback: function () {
+                map.zoomOut();
+            }
+        }
+    ];
+// for(var i = 0; i < txtMenuItem.length; i++){
+//     menu.addItem(new BMapGL.MenuItem(               // 定义菜单项实例
+//         txtMenuItem[i].text,                        // 传入菜单项的显示文本
+//         txtMenuItem[i].callback,                    // 传入菜单项的回调函数
+//         {
+//             width: 300,                             // 指定菜单项的宽度
+//             id: 'menu' + i                          // 指定菜单项dom的id
+//         }
+//     ));
+// }
+
+var scaleCtrl = new BMapGL.ScaleControl();  // 添加比例尺控件
+map.addControl(scaleCtrl);
+var zoomCtrl = new BMapGL.ZoomControl();  // 添加缩放控件
+map.addControl(zoomCtrl);
+var cityCtrl = new BMapGL.CityListControl();  // 添加城市列表控件
+map.addControl(cityCtrl);
+
+// 禁止地图旋转和倾斜可以通过配置项进行设置
+//var map = new BMapGL.Map("allmap",{
+//    enableRotate: false,
+//    enableTilt: false
+//});
+
+
+</script> 

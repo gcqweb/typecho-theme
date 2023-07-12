@@ -1,0 +1,74 @@
+        .winter {
+            height: 160px;
+            position: relative;
+            overflow: hidden;
+
+            --percentage: 0.5;
+        }
+
+        .winter .view,
+        .winter .tree {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .winter img,
+        .winter video {
+            position: absolute;
+            display: block;
+            width: 120%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .winter .afternoon {
+            z-index: 20;
+            opacity: calc(1 - (var(--percentage) - 0.25) / 0.25);
+        }
+
+        .winter .morning {
+            z-index: 10;
+            opacity: calc(1 - (var(--percentage) - 0.5) / 0.5);
+        }
+        /*原版*/
+        /*.winter .morning {*/
+        /*    z-index: 20;*/
+        /*    opacity: calc(1 - (var(--percentage) - 0.25) / 0.25);*/
+        /*}*/
+
+        /*.winter .afternoon {*/
+        /*    z-index: 10;*/
+        /*    opacity: calc(1 - (var(--percentage) - 0.5) / 0.5);*/
+        /*}*/
+
+        .winter .view {
+            transform: translatex(calc(var(--percentage) * 100px));
+        }
+
+        .winter .tree {
+            transform: translatex(calc(var(--percentage) * 50px));
+            filter: blur(3px);
+        }
+
+        .winter .view,
+        .winter .tree,
+        .winter .morning,
+        .winter .afternoon {
+            transition: .2s all ease-in;
+        }
+
+        .winter.moving .view,
+        .winter.moving .tree,
+        .winter.moving .morning,
+        .winter.moving .afternoon {
+            transition: none;
+        }
+
+        .winter .window-cover {
+            opacity: calc((var(--percentage) - 0.9) / 0.1);
+        }
