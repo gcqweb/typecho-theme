@@ -4,9 +4,39 @@
  *
  * @package custom
  */
+ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 $this->need('header.php');
  ?>
 
+<!--<div class="page">-->
+<!--      <div class="time_container">-->
+<!--          <div class="time" id="time">14:37</div>-->
+<!--      </div>-->
+
+<!--      <div class="date_container">-->
+<!--          <div class="date" id="date">12月24日</div>-->
+<!--          <div class="date" id="week">星期六</div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--<script>-->
+<!--function update() {-->
+<!--        var date = new Date()-->
+<!--        var utc8DiffMinutes = date.getTimezoneOffset() + 480-->
+<!--        date.setMinutes(date.getMinutes() + utc8DiffMinutes)-->
+
+<!--        var timeString = date.getHours() + ':' + ('0' + date.getMinutes()).slice(-2)-->
+<!--        var dateString = (date.getMonth() + 1) + '月' + date.getDate() + '日'-->
+<!--        var weekList = ['日', '一', '二', '三', '四', '五', '六']-->
+<!--        var weekString = '星期' + weekList[date.getDay()]-->
+
+<!--        document.getElementById("time").innerHTML = timeString-->
+<!--        document.getElementById("date").innerHTML = dateString-->
+<!--        document.getElementById("week").innerHTML = weekString-->
+<!--      }-->
+
+<!--      update()-->
+<!--      setInterval("update()", 60 * 1000)-->
+<!--</script>-->
 <style>
     body {
         background: -webkit-linear-gradient(top, transparent 19px, #e7e7e7 20px), -webkit-linear-gradient(left, transparent 19px, #e7e7e7 20px);
@@ -59,7 +89,7 @@ $this->need('header.php');
         </article>
     </div>
 </div>
-<?php $this->need('html/test.html'); ?>
+
 
 <script type="text/javascript" src="https://api.map.baidu.com/api?v=1.0&type=webgl&ak=y1QMLdRyiKxmLDTQRchXmDyhtqdWfCEu">
 </script>
